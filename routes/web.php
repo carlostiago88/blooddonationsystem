@@ -15,3 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('doadores', 'DoadorController');
+
+Route::get('/doador/login', [
+    'as' => 'doador.login',
+    'uses' => 'DoadorController@login'
+]);
+
+Route::get('/doador/novo', [
+    'as' => 'doador.create',
+    'uses' => 'DoadorController@create'
+]);
+
+Route::post('/doador/salvar', [
+        'as' => 'doador.store',
+        'uses' => 'DoadorController@store'
+    ]
+);

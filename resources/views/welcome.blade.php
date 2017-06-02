@@ -83,8 +83,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Acesso</a>
-                    <a href="https://laravel.com/docs">Descrição do Sistema</a>
+                    <a href="{{ route('doador.login') }}">Doador</a>
+                    <a href="https://laravel.com/docs">Laboratório</a>
+                    <a href="https://laravel.com/docs">Hospital/Clínica</a>
+                    <a href="https://laravel.com/docs">Administrativo</a>
                 </div>
             </div>
         </div>
