@@ -23,7 +23,7 @@ class DoadorController extends Controller
      */
     public function index()
     {
-        //
+        return view('doador.index');
     }
 
     /**
