@@ -14,7 +14,8 @@
         <style>
             html, body {
                 background-color: #fff;
-                color: #636b6f;
+                /*color: #636b6f;*/
+                color: #761c19;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -50,7 +51,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #761c19;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -71,8 +72,8 @@
                     @if (Auth::check())
                         <a href="{{ route('home') }}">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Novo Doador</a>
+                        <a href="{{ url('/login') }}">Entrar</a>
+                        <a href="{{ url('/register') }}">Cadastrar</a>
                     @endif
                 </div>
             @endif
