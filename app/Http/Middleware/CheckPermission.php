@@ -18,8 +18,7 @@ class CheckPermission
     public function handle($request, Closure $next, $perfilRoute)
     {
         $perfilUser = $request->user()->perfil;
-
-        if ($perfilUser == $perfilRoute) {
+        if ($perfilUser == $perfilRoute || $perfilRoute == 'all') {
             return $next($request);
         }
         return response()->view('errors.check-permission');

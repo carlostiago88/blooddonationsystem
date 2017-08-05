@@ -59,20 +59,29 @@ Route::post('register', [
     'uses' => 'Auth\RegisterController@register'
 ]);
 
-Route::get('home', 'HomeController@index')->name('home');
+
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::middleware(['check-permission:all'])->group(function () {
+
+        Route::get('/campanhas', [
+            'as' => 'campanhas',
+            'uses' => 'HomeController@campanhas'
+        ]);
+
+    });
 
     Route::middleware(['check-permission:admin'])->group(function () {
 
         Route::get('/admin/', [
             'as' => 'admin.index',
-            'uses' => 'AdminController@index'
+            'uses' => 'Admin\AdminController@index'
         ]);
 
-        Route::get('home', [
-            'as' => 'home',
-            'uses' => 'AdminController@home'
+        Route::get('/admin/credentials', [
+            'as' => 'admin.credentials',
+            'uses' => 'Admin\AdminController@credentials'
         ]);
     });
 
@@ -80,11 +89,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/doador/', [
             'as' => 'doador.index',
-            'uses' => 'DoadorController@index'
+            'uses' => 'Doador\DoadorController@index'
         ]);
-        Route::get('home', [
-            'as' => 'home',
-            'uses' => 'DoadorController@home'
+
+    });
+
+    Route::middleware(['check-permission:hospital'])->group(function () {
+
+        Route::get('/hospital/', [
+            'as' => 'hospital.index',
+            'uses' => 'Hospital\HospitalController@index'
         ]);
 
     });

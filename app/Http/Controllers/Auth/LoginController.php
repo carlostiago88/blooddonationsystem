@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '';
+    protected $redirectTo = '/home';
     /**
      * Create a new controller instance.
      *
@@ -44,7 +44,7 @@ class LoginController extends Controller
      */
     public function redirectPath()
     {
-        if (\Auth::user()->perfil == 'admin') {
+       /* if (\Auth::user()->perfil == 'admin') {
             return '/admin';
         }
 
@@ -54,7 +54,8 @@ class LoginController extends Controller
 
         else {
             return '/home';
-        }
+        }*/
+        return '/campanhas';
     }
 
 }

@@ -1,21 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Laboratorio;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DoadorController extends Controller
+class LaboratorioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
-    {
-        return view('doador.login');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +14,7 @@ class DoadorController extends Controller
      */
     public function index()
     {
-        return view('doador.index');
+        //
     }
 
     /**
@@ -33,7 +24,7 @@ class DoadorController extends Controller
      */
     public function create()
     {
-        return view('doador.create');
+        //
     }
 
     /**
@@ -45,7 +36,6 @@ class DoadorController extends Controller
     public function store(Request $request)
     {
         //
-        var_dump($request->all());
     }
 
     /**
