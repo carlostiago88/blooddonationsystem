@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateBolsasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bolsas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->boolean('is_active',1);
-            $table->string('perfil');
+            $table->integer('doador_id');
+            $table->integer('tecnico_id');
             $table->integer('laboratorio_id');
-            $table->integer('hospital_id');
-            $table->integer('hemocentro_id');
-            $table->rememberToken();
+            $table->integer('tipo');
+            $table->integer('fator_rh');
+            $table->integer('bolsa_origem_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bolsas');
     }
 }
