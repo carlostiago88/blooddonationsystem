@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('is_active',1);
             $table->string('perfil');
-            $table->integer('laboratorio_id');
-            $table->integer('hospital_id');
-            $table->integer('hemocentro_id');
+            $table->integer('laboratorio_id')->nullable();
+            $table->integer('hospital_id')->nullable();
+            $table->integer('hemocentro_id')->nullable();
+            $table->boolean('status')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });

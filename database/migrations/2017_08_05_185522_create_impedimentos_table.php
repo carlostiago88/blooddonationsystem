@@ -15,6 +15,8 @@ class CreateImpedimentosTable extends Migration
     {
         Schema::create('impedimentos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nome');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

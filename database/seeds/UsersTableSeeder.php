@@ -13,51 +13,41 @@ class UsersTableSeeder extends Seeder
     {
         factory(\App\User::class)->create([
             'email' => 'admin@email.com',
-            'is_active' => '1',
-            'is_permission' => '3',
-            'perfil' =>'admin'
+            'perfil' => 'admin',
         ]);
         factory(\App\User::class)->create([
             'email' => 'doador@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'doador'
+            'perfil' => 'doador',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.tecnico@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'lab.tecnico'
+            'perfil' => 'lab.tecnico',
+            'laboratorio_id' => '1',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.biomedico@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'lab.biomedico'
+            'perfil' => 'lab.biomedico',
+            'laboratorio_id' => '1',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.logistico@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'lab.logistico'
+            'perfil' => 'lab.logistico',
+            'laboratorio_id' => '1',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.gerente@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'lab.gerente'
+            'perfil' => 'lab.gerente',
+            'laboratorio_id' => '1',
         ]);
         factory(\App\User::class)->create([
             'email' => 'hemocentro@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'hemocentro'
+            'perfil' => 'hemocentro',
+            'hemocentro_id' => '1',
         ]);
         factory(\App\User::class)->create([
             'email' => 'enfermeiro@email.com',
-            'is_active' => '1',
-            'is_permission' => '1',
-            'perfil' =>'enfermeiro'
+            'perfil' => 'enfermeiro',
+            'hospital_id' => '1',
         ]);
     }
 }

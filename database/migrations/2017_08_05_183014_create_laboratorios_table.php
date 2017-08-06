@@ -16,6 +16,13 @@ class CreateLaboratoriosTable extends Migration
         Schema::create('laboratorios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('telefone');
+            $table->string('email');
+            $table->string('endereco');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('estado');
+            $table->boolean('status',1);
             $table->timestamps();
         });
     }

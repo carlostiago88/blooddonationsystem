@@ -22,3 +22,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+/*
+$factory->define(\App\Hospital::class, function () {
+    return [
+        'nome' => 'Hospital Beneficente Portuguesa',
+        'telefone' => '(91) 3215-4444',
+        'email' => 'contato@beneficenteportuguesa.com.br',
+        'endereco' => 'Av. Generalissimo Deodoro, 868',
+        'bairro' => 'Umarizal',
+        'cidade' => 'Belém',
+        'estado' => 'Pará',
+        'status' => '1'
+    ];
+});
+*/
