@@ -10,7 +10,7 @@
 <body>
 
 <div class="container text-center">
-    <h1>Você não tem permissão para acessar esta página.<br/> Contate o administrador!</h1>
+    <h1>Você não tem permissão para acessar esta página.<br/> <a href="{{route('campanhas')}}">Campanhas</a></h1>
 </div>
 
 </body>

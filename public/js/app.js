@@ -26454,7 +26454,7 @@ return jQuery;
      *
      * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
      * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
-     * jQuery(element).on('click', throttled);
+     * b(element).on('click', throttled);
      *
      * // Cancel the trailing throttled invocation.
      * jQuery(window).on('popstate', throttled.cancel);

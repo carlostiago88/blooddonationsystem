@@ -14,7 +14,6 @@ class CheckPermission
      * @return mixed
      */
 
-    /*Teste 1.0*/
     public function handle($request, Closure $next, $perfilRoute)
     {
         $perfilUser = $request->user()->perfil;

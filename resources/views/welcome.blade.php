@@ -65,6 +65,12 @@
             margin-bottom: 30px;
         }
     </style>
+
+    <title>{{ config('app.name', 'BloodDonationSystem') }}</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div class="flex-center position-ref full-height">
@@ -79,12 +85,11 @@
                     <a href="https://laravel.com/docs">Laboratório</a>
                     <a href="https://laravel.com/docs">Hospital</a>
                     <a href="https://laravel.com/docs">Hemocentro</a>-->
+            <a href="{{ route('campanhas') }}">Campanhas</a>
             @if (Route::has('login'))
-                @if (Auth::check())
-                    <a href="{{ route('campanhas') }}">Campanhas</a>
-                @else
+                @if (!Auth::check())
                     <a href="{{ url('/login') }}">Entrar</a>
-                    <a href="{{ url('/register') }}">Cadastrar</a>
+                    <a href="{{ url('/register') }}">Novo Doador</a>
                 @endif
             @endif
         </div>

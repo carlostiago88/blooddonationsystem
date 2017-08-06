@@ -59,17 +59,23 @@ Route::post('register', [
     'uses' => 'Auth\RegisterController@register'
 ]);
 
-
+Route::get('/campanhas', [
+    'as' => 'campanhas',
+    'uses' => 'HomeController@campanhas'
+]);
 
 Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['check-permission:all'])->group(function () {
 
-        Route::get('/campanhas', [
-            'as' => 'campanhas',
-            'uses' => 'HomeController@campanhas'
+        Route::get('/hospitais', [
+            'as' => 'hospitais',
+            'uses' => 'HomeController@hospitais'
         ]);
-
+        Route::get('/laboratorios', [
+            'as' => 'laboratorios',
+            'uses' => 'HomeController@laboratorios'
+        ]);
     });
 
     Route::middleware(['check-permission:admin'])->group(function () {
@@ -83,24 +89,41 @@ Route::middleware(['auth'])->group(function () {
             'as' => 'admin.credentials',
             'uses' => 'Admin\AdminController@credentials'
         ]);
+        Route::get('/admin/monitoring', [
+            'as' => 'admin.monitoring',
+            'uses' => 'Admin\AdminController@monitoring'
+        ]);
+        Route::get('/admin/reports', [
+            'as' => 'admin.reports',
+            'uses' => 'Admin\AdminController@reports'
+        ]);
+
     });
 
     Route::middleware(['check-permission:doador'])->group(function () {
-
         Route::get('/doador/', [
             'as' => 'doador.index',
             'uses' => 'Doador\DoadorController@index'
         ]);
-
+        Route::get('/doador/create', [
+            'as' => 'doador.create',
+            'uses' => 'Doador\DoadorController@create'
+        ]);
+        Route::get('/doador/agendar', [
+            'as' => 'doador.agendar',
+            'uses' => 'Doador\AgendamentoController@create'
+        ]);
+        Route::post('/doador/agendar', [
+            'as' => 'agenda.store',
+            'uses' => 'Doador\AgendamentoController@store'
+        ]);
     });
 
     Route::middleware(['check-permission:hospital'])->group(function () {
-
         Route::get('/hospital/', [
             'as' => 'hospital.index',
             'uses' => 'Hospital\HospitalController@index'
         ]);
-
     });
 });
 

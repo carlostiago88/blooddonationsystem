@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <div id="app">
@@ -48,19 +49,22 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    @if(Auth::user()->perfil == 'admin')
-                                        <a href="{{route('admin.index')}}">Index</a>
-                                        <a href="{{route('admin.credentials')}}">Credenciais</a>
-                                        <a href="#">Monitoramento</a>
-                                        <a href="#">Relatórios</a>
-                                    @elseif(Auth::user()->perfil == 'doador')
-                                        <a href="{{route('doador.index')}}">Index</a>
-                                        <a href="#">Completar Cadastro</a>
-                                        <a href="#">Agendar Doação</a>
-                                        <a href="#">Avaliar Atendimento</a>
-                                    @endif
-                                </li>
+                                @if(Auth::user()->perfil == 'admin')
+                                    <li><a href="{{route('admin.index')}}">Index</a></li>
+                                    <li><a href="{{route('admin.credentials')}}">Credenciais</a></li>
+                                    <li><a href="{{route('admin.monitoring')}}">Monitoramento</a></li>
+                                    <li><a href="{{route('admin.reports')}}">Relatórios</a></li>
+                                @elseif(Auth::user()->perfil == 'doador')
+                                    <li><a href="{{route('doador.index')}}">Index</a></li>
+                                    <li><a href="{{route('doador.create')}}">Completar Cadastro</a></li>
+                                    <li><a href="{{route('doador.agendar')}}">Agendar Doação</a></li>
+                                    <li><a href="#">Avaliar Atendimento</a></li>
+                                @endif
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{route('campanhas')}}">Campanhas</a></li>
+                                <li><a href="{{route('hospitais')}}">Hospitais</a></li>
+                                <li><a href="{{route('laboratorios')}}">Laboratórios</a></li>
+
                             </ul>
                         </li>
                     @endif
@@ -71,7 +75,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">Entrar</a></li>
-                        <li><a href="{{ route('register') }}">Registrar</a></li>
+                        <li><a href="{{ route('register') }}">Novo Doador</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -99,11 +103,14 @@
             </div>
         </div>
     </nav>
-
-    @yield('content')
+    <div class="container">
+        @include('flash-message')
+        @yield('content')
+    </div>
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}">
+</script>
 </body>
 </html>

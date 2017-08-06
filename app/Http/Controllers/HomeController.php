@@ -31,29 +31,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function allUsers()
+    public function hospitais()
     {
-        dd('Access All Users');
+        return view('hospitais');
     }
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function adminSuperadmin()
+    public function laboratorios()
     {
-        dd('Access Admin and Superadmin');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function superadmin()
-    {
-        dd('Access only Superadmin');
+        return view('laboratorios');
     }
 
 }

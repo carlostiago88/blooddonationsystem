@@ -21,5 +21,12 @@ class AdminController extends Controller
     {
         return view('admin.credentials');
     }
-
+    public function monitoring()
+    {
+        return view('admin.monitoring');
+    }
+    public function reports()
+    {
+        return view('admin.reports');
+    }
 }
