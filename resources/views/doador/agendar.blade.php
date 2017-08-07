@@ -13,14 +13,14 @@
         <div class="well bs-component">
             <form class="form-horizontal" method="POST" action="{{ route('agenda.store') }}">
                 {{ csrf_field() }}
-                <input type="hidden" name="pessoa_id" value="{{ $pessoa_id }}"/>
+                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
                 <fieldset>
                     <legend>Agendamento</legend>
                     <div class="form-group">
                         <label for="inputLaboratorio" class="col-lg-2 control-label">Laboratório</label>
                         <div class="col-lg-10">
-                            <select class="form-control" name="laboratorio_id" required
-                                    title="Necessário Preencher" value="{{ old('laboratorio_id') }}">
+                            <select class="form-control" name="laboratorio_id" required {{ $disabled }}
+                            title="Necessário Preencher" value="{{ old('laboratorio_id') }}">
                                 <option value="">Selecione</option>
                                 @foreach($laboratorios as $laboratorio)
                                     <option value="{{ $laboratorio->id }}">{{ $laboratorio->nome ." - ". ($laboratorio->endereco)}}</option>
@@ -30,54 +30,27 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" rows="3" id="textArea"></textarea>
-                            <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-2 control-label">Radios</label>
+                        <label class="col-lg-2 control-label">Turno</label>
                         <div class="col-lg-10">
                             <div class="radio">
                                 <label>
-                                    <input name="optionsRadios" id="optionsRadios1" value="option1" checked=""
-                                           type="radio">
-                                    Option one is this
+                                    <input name="turno" id="optionsRadios1" value="manha" checked="" {{ $disabled }}
+                                    type="radio">
+                                    Manhã
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
-                                    Option two can be something else
+                                    <input name="turno" id="optionsRadios2" value="tarde" type="radio" {{ $disabled }}>
+                                    Tarde
                                 </label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="select" class="col-lg-2 control-label">Selects</label>
-                        <div class="col-lg-10">
-                            <select class="form-control" id="select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                            <br>
-                            <select multiple="" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="reset" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-default" {{ $disabled }}>Cancelar</button>
+                            <button type="submit" class="btn btn-primary" {{ $disabled }}>Submeter</button>
                         </div>
                     </div>
                 </fieldset>

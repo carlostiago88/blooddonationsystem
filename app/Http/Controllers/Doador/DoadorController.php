@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Doador;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers;
-
+use Illuminate\Support\Facades\Redirect;
 
 class DoadorController extends Controller
 {
+
+    protected $model;
+
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +37,13 @@ class DoadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('doador.create');
+        $id = $request->user()->id;
+        //dd($id);
+        return view('doador.create')->with([
+            'user_id' => $id,
+        ]);
     }
 
     /**
@@ -45,10 +52,14 @@ class DoadorController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, \App\Doador $doador)
     {
-        //
-        var_dump($request->all());
+        $this->model = $doador;
+        $result = $this->model->updateOrCreate($request->all()->except('_token'));
+
+        //create($request->all());
+        return redirect()->route('doador.agendar')
+            ->with('success', 'Seu cadastro foi atualizado com sucesso! Aproveite e agende sua doação.');
     }
 
     /**

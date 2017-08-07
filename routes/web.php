@@ -68,6 +68,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['check-permission:all'])->group(function () {
 
+        Route::get('/home', [
+            'as' => 'home',
+            'uses' => 'HomeController@home'
+        ]);
         Route::get('/hospitais', [
             'as' => 'hospitais',
             'uses' => 'HomeController@hospitais'
@@ -108,6 +112,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/doador/create', [
             'as' => 'doador.create',
             'uses' => 'Doador\DoadorController@create'
+        ]);
+        Route::post('/doador/store', [
+            'as' => 'doador.store',
+            'uses' => 'Doador\DoadorController@store'
         ]);
         Route::get('/doador/agendar', [
             'as' => 'doador.agendar',

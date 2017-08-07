@@ -15,10 +15,11 @@ class CreateAgendamentosTable extends Migration
     {
         Schema::create('agendamentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('pessoa_id');
+            $table->integer('user_id');
             $table->integer('laboratorio_id');
-            $table->dateTime('data_hora');
-            $table->boolean('status')->default(1);
+            $table->date('data');
+            $table->boolean('turno');
+            $table->string('situacao')->default('agendado');//cancelado ou realizado
             $table->timestamps();
         });
     }

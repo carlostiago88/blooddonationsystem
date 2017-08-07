@@ -4,75 +4,61 @@
     <div class="container">
         <div class="col-lg-6">
             <div class="well bs-component">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="POST" action="{{ route('doador.store') }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"/>
                     <fieldset>
-                        <legend>Legend</legend>
+                        <legend>Completar Cadastro</legend>
                         <div class="form-group">
-                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                            <label for="inputNascimento" class="col-lg-2 control-label">Nascimento</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="inputEmail" placeholder="Email" type="text">
+                                <input class="form-control" id="inputNascimento" placeholder="dd/mm/aaaa" name="nascimento" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                            <label class="col-lg-2 control-label">Sexo</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="inputPassword" placeholder="Password" type="password">
+                                <div class="radio">
+                                    <label>
+                                        <input name="sexo" id="optionsRadios1" value="M" checked=""
+                                               type="radio">
+                                        Masculino
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="sexo" id="optionsRadios2" value="F" type="radio">
+                                        Feminino
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputTelefone" class="col-lg-2 control-label">Contato</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="inputTelefone" placeholder="Telefone" name="contato" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="textEndereco" class="col-lg-2 control-label">Endereço</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" rows="3" id="textEndereco" name="endereco"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="col-lg-2 control-label">Já é doador(a)?</label>
+                            <div class="col-lg-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Checkbox
+                                        <input type="checkbox" name="ja_e_doador" value="S"> Sim
                                     </label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="textArea" class="col-lg-2 control-label">Textarea</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="textArea"></textarea>
-                                <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 control-label">Radios</label>
-                            <div class="col-lg-10">
-                                <div class="radio">
-                                    <label>
-                                        <input name="optionsRadios" id="optionsRadios1" value="option1" checked=""
-                                               type="radio">
-                                        Option one is this
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
-                                        Option two can be something else
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="select" class="col-lg-2 control-label">Selects</label>
-                            <div class="col-lg-10">
-                                <select class="form-control" id="select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                                <br>
-                                <select multiple="" class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-10 col-lg-offset-2">
-                                <button type="reset" class="btn btn-default">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-default">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Submeter</button>
                             </div>
                         </div>
                     </fieldset>

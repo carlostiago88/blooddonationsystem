@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doador extends Model
 {
     protected $fillable = [
-        'nome', 'telefone', 'email', 'endereco','bairro','cidade','estado','status',
+        'user_id', 'endereco', 'nascimento', 'ja_e_doador','sexo','contato','status',
     ];
     protected $table = 'doadores';
 }
