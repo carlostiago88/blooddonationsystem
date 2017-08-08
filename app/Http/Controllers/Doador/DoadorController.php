@@ -55,7 +55,8 @@ class DoadorController extends Controller
     public function store(Request $request, \App\Doador $doador)
     {
         $this->model = $doador;
-        $result = $this->model->updateOrCreate($request->all()->except('_token'));
+        //$result = $this->model->updateOrCreate($request->all()->except('_token'));
+        $result = $this->model->create($request->all());
 
         //create($request->all());
         return redirect()->route('doador.agendar')

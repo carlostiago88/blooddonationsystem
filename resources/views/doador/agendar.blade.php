@@ -28,7 +28,12 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label for="inputData" class="col-lg-2 control-label">Data</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="inputData" placeholder="dd/mm/aaaa" name="data" type="text" {{ $disabled }}>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Turno</label>
                         <div class="col-lg-10">
@@ -60,22 +65,18 @@
     </div>
     <div class="col-lg-6">
         <div class="well bs-component">
-            <legend>Últimos Agendamentos</legend>
+            <legend>Últimas Doações</legend>
             <table class="table table-striped table-hover ">
                 <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nome</th>
                     <th>Local</th>
                     <th>Data/Hora</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>1</td>
-                    <td>Slogan da campanha</td>
-                    <td>Local do Evento</td>
-                    <td>07/01/2018 08h00</td>
+                    <td>-</td>
+                    <td>-</td>
                 </tr>
                 </tbody>
             </table>

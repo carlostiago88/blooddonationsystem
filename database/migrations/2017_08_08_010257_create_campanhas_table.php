@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDoadoresTable extends Migration
+class CreateCampanhasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateDoadoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('doadores', function (Blueprint $table) {
+        Schema::create('campanhas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('endereco',240);
-            $table->string('nascimento');
-            $table->string('ja_e_doador');
-            $table->string('sexo');
-            $table->string('contato',240);
+            $table->string('nome');
+            $table->string('local');
+            $table->string('data_hora');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreateDoadoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doadores');
+        Schema::dropIfExists('campanhas');
     }
 }

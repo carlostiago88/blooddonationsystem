@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,11 @@ class HomeController extends Controller
      */
     public function campanhas()
     {
-        return view('campanhas');
+        $campanhas = DB::table('campanhas')->orderBy('nome', 'asc')->get();
+
+        return view('campanhas', [
+            'campanhas' => $campanhas,
+        ]);
     }
 
     /**
@@ -43,7 +48,11 @@ class HomeController extends Controller
      */
     public function hospitais()
     {
-        return view('hospitais');
+        $hospitais = DB::table('hospitais')->orderBy('nome', 'asc')->get();
+
+        return view('hospitais', [
+            'hospitais' => $hospitais,
+        ]);
     }
     /**
      * Show the application dashboard.
@@ -52,7 +61,11 @@ class HomeController extends Controller
      */
     public function laboratorios()
     {
-        return view('laboratorios');
+        $laboratorios = DB::table('laboratorios')->orderBy('nome', 'asc')->get();
+
+        return view('laboratorios', [
+            'laboratorios' => $laboratorios,
+        ]);
     }
 
 }

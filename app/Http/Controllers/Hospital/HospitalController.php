@@ -14,7 +14,6 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**

@@ -9,19 +9,17 @@
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
-                    <th>Local</th>
-                    <th>Data/Hora</th>
-                    <th>Compartilhe</th>
+                    <th>Endereço</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Slogan da campanha</td>
-                    <td>Local do Evento</td>
-                    <td>07/01/2018 08h00</td>
-                    <td><span class="glyphicon glyphicon-share" aria-hidden="true"></span></td>
-                </tr>
+                @foreach($hospitais as $hospital)
+                    <tr>
+                        <td>{{ $hospital->id }}</td>
+                        <td>{{ $hospital->nome }}</td>
+                        <td>{{ $hospital->endereco }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -66,7 +66,7 @@ trait WebControllerTrait
     public function store(Request $request)
     {
         $result = $this->model->create($request->all());
-        return response()->json($result);
+        return $result;
     }
 
     /**

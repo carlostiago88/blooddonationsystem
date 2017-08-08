@@ -34,16 +34,14 @@ class AgendamentoController extends Controller
     public function create(Request $request, \App\Doador $model)
     {
         $this->model = $model;
-        $id = Auth::user()->id;
 
-        $result = $this->model->where('user_id', $id)->first();
-        $momento = date("d/m/Y", strtotime($result->updated_at));
+        $user_id = Auth::user()->id;
+
+        $result = $this->model->where('user_id', $user_id)->first();
+
         $disabled = '';
 
-        if ($result != null) {
-            Session::flash('alert-class', 'alert-info');
-            Session::flash('message', 'Seu cadastro foi atualizado em '.$momento);
-        } else {
+        if ($result == null) {
             Session::flash('alert-class', 'alert alert-dismissible alert-danger');
             Session::flash('message', 'Voce precisa completar o seu cadastro pessoal para poder agendar.');
             $disabled = 'disabled';
@@ -53,14 +51,20 @@ class AgendamentoController extends Controller
 
         return view('doador.agendar', [
             'disabled' => $disabled,
-            'pessoa_id' => $id,
+            'pessoa_id' => $user_id,
             'laboratorios' => $laboratorios,
         ]);
         //return back()->with('success','Item created successfully!');
     }
 
-    public function store(Request $request)
+    public function store(Request $request,\App\Agendamento $model)
     {
+        $this->model = $model;
+        $user_id = Auth::user()->id;
+        //dd($request->all());
+        $result = $this->model->create($request->all());
 
+        return redirect()->route('doador.agendar')
+            ->with('success', 'Você agendou com sucesso.');
     }
 }
