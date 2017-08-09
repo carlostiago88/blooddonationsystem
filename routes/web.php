@@ -127,11 +127,24 @@ Route::middleware(['auth'])->group(function () {
         ]);
     });
 
-    Route::middleware(['check-permission:hospital'])->group(function () {
+    Route::middleware(['check-permission:hosp.enfermeiro'])->group(function () {
         Route::get('/hospital/', [
             'as' => 'hospital.index',
             'uses' => 'Hospital\HospitalController@index'
         ]);
+    });
+
+    Route::middleware(['check-permission:lab.tecnico'])->group(function () {
+
+    });
+    Route::middleware(['check-permission:lab.biomedico'])->group(function () {
+
+    });
+    Route::middleware(['check-permission:lab.logistico'])->group(function () {
+
+    });
+    Route::middleware(['check-permission:lab.gerente'])->group(function () {
+
     });
 });
 
