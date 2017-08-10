@@ -7,6 +7,14 @@ use App\Http\Controllers\Controller;
 
 class HospitalController extends Controller
 {
+
+    public function solicitarSangue(){
+        return view ('hospital.solicitar-sangue');
+    }
+
+    public function historicoSolicitacoes(){
+        return view ('hospital.historico-solicitacoes');
+    }
     /**
      * Display a listing of the resource.
      *

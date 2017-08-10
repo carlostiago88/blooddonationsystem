@@ -54,6 +54,20 @@
                                     <li><a href="{{route('admin.credentials')}}">Credenciais</a></li>
                                     <li><a href="{{route('admin.monitoring')}}">Monitoramento</a></li>
                                     <li><a href="{{route('admin.reports')}}">Relatórios</a></li>
+                                @elseif(Auth::user()->perfil == 'lab.tecnico')
+                                    <li><a href="{{route('laboratorio.coletar-sangue')}}">Coletar Sangue</a></li>
+                                @elseif(Auth::user()->perfil == 'lab.logistico')
+                                    <li><a href="{{route('laboratorio.estoque-sangue')}}">Estoque de Bolsas</a></li>
+                                    <li><a href="{{route('laboratorio.despacho-sangue')}}">Despacho de Bolsas</a></li>
+                                @elseif(Auth::user()->perfil == 'lab.biomedico')
+                                    <li><a href="{{route('laboratorio.analise-sangue')}}">Análise de Sangue</a></li>
+                                @elseif(Auth::user()->perfil == 'lab.gerente')
+                                    <li><a href="{{route('laboratorio.agenda')}}">Agenda de Doações</a></li>
+                                    <li><a href="{{route('laboratorio.comunicacao')}}">Comunicação de Exames</a></li>
+                                    <li><a href="{{route('laboratorio.relatorios')}}">Relatórios</a></li>
+                                @elseif(Auth::user()->perfil == 'hosp.enfermeiro')
+                                    <li><a href="{{route('hospital.solicitar-sangue')}}">Solicitação de Bolsa</a></li>
+                                    <li><a href="{{route('hospital.historico-solicitacoes')}}">Histórico de Solicitações</a></li>
                                 @elseif(Auth::user()->perfil == 'doador')
                                     <li><a href="{{route('doador.index')}}">Index</a></li>
                                     <li><a href="{{route('doador.create')}}">Completar Cadastro</a></li>
@@ -80,7 +94,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }} ({{Auth::user()->perfil }}) <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">

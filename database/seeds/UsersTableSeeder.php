@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
             'hemocentro_id' => '1',
         ]);
         factory(\App\User::class)->create([
-            'email' => 'hospt.enfermeiro@email.com',
+            'email' => 'hosp.enfermeiro@email.com',
             'perfil' => 'hosp.enfermeiro',
             'hospital_id' => '1',
         ]);

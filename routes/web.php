@@ -132,19 +132,47 @@ Route::middleware(['auth'])->group(function () {
             'as' => 'hospital.index',
             'uses' => 'Hospital\HospitalController@index'
         ]);
+        Route::get('/hospital/solicitar-sangue', [
+            'as' => 'hospital.solicitar-sangue',
+            'uses' => 'Hospital\HospitalController@solicitarSangue'
+        ]);
+        Route::get('/hospital/historico-solicitacoes', [
+            'as' => 'hospital.historico-solicitacoes',
+            'uses' => 'Hospital\HospitalController@historicoSolicitacoes'
+        ]);
     });
 
     Route::middleware(['check-permission:lab.tecnico'])->group(function () {
-
+        Route::get('/laboratorio/coletar-sangue', [
+            'as' => 'laboratorio.coletar-sangue',
+            'uses' => 'Laboratorio\LaboratorioController@coletarSangue'
+        ]);
     });
     Route::middleware(['check-permission:lab.biomedico'])->group(function () {
-
+        Route::get('/laboratorio/analise-sangue', [
+            'as' => 'laboratorio.analise-sangue',
+            'uses' => 'Laboratorio\LaboratorioController@analiseSangue'
+        ]);
     });
     Route::middleware(['check-permission:lab.logistico'])->group(function () {
-
+        Route::get('/laboratorio/estoque-sangue', [
+            'as' => 'laboratorio.estoque-sangue',
+            'uses' => 'Laboratorio\LaboratorioController@estoqueSangue'
+        ]);
     });
     Route::middleware(['check-permission:lab.gerente'])->group(function () {
-
+        Route::get('/laboratorio/agenda', [
+            'as' => 'laboratorio.agenda',
+            'uses' => 'Laboratorio\LaboratorioController@agenda'
+        ]);
+        Route::get('/laboratorio/relatorios', [
+            'as' => 'laboratorio.relatorios',
+            'uses' => 'Laboratorio\LaboratorioController@relatorios'
+        ]);
+        Route::get('/laboratorio/comunicacao', [
+            'as' => 'laboratorio.comunicacao',
+            'uses' => 'Laboratorio\LaboratorioController@comunicacao'
+        ]);
     });
 });
 
