@@ -63,6 +63,9 @@ class DoadorController extends Controller
             ->with('success', 'Seu cadastro foi atualizado com sucesso! Aproveite e agende sua doação.');
     }
 
+    public function avaliar(){
+        return view('doador.avaliar');
+    }
     /**
      * Display the specified resource.
      *

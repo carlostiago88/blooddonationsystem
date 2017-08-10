@@ -125,6 +125,10 @@ Route::middleware(['auth'])->group(function () {
             'as' => 'agenda.store',
             'uses' => 'Doador\AgendamentoController@store'
         ]);
+        Route::get('/doador/avaliar', [
+            'as' => 'doador.avaliar',
+            'uses' => 'Doador\DoadorController@avaliar'
+        ]);
     });
 
     Route::middleware(['check-permission:hosp.enfermeiro'])->group(function () {

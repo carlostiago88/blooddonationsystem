@@ -72,7 +72,7 @@
                                     <li><a href="{{route('doador.index')}}">Index</a></li>
                                     <li><a href="{{route('doador.create')}}">Completar Cadastro</a></li>
                                     <li><a href="{{route('doador.agendar')}}">Agendar Doação</a></li>
-                                    <li><a href="#">Avaliar Atendimento</a></li>
+                                    <li><a href="{{route('doador.avaliar')}}">Avaliar Atendimento</a></li>
                                 @endif
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{route('campanhas')}}">Campanhas</a></li>
