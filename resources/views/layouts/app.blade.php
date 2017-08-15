@@ -67,7 +67,8 @@
                                     <li><a href="{{route('laboratorio.relatorios')}}">Relatórios</a></li>
                                 @elseif(Auth::user()->perfil == 'hosp.enfermeiro')
                                     <li><a href="{{route('hospital.solicitar-sangue')}}">Solicitação de Bolsa</a></li>
-                                    <li><a href="{{route('hospital.historico-solicitacoes')}}">Histórico de Solicitações</a></li>
+                                    <li><a href="{{route('hospital.historico-solicitacoes')}}">Histórico de
+                                            Solicitações</a></li>
                                 @elseif(Auth::user()->perfil == 'doador')
                                     <li><a href="{{route('doador.index')}}">Index</a></li>
                                     <li><a href="{{route('doador.create')}}">Completar Cadastro</a></li>

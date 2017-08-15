@@ -48,13 +48,13 @@ class AgendamentoController extends Controller
         }
 
         $laboratorios = DB::table('laboratorios')->orderBy('nome', 'asc')->get();
-
+        $avisos = DB::table('avisos')->orderBy('nome', 'asc')->get();
         return view('doador.agendar', [
             'disabled' => $disabled,
             'pessoa_id' => $user_id,
             'laboratorios' => $laboratorios,
+            'avisos' => $avisos
         ]);
-        //return back()->with('success','Item created successfully!');
     }
 
     public function store(Request $request,\App\Agendamento $model)

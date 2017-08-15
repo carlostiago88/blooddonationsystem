@@ -31,7 +31,8 @@
                     <div class="form-group">
                         <label for="inputData" class="col-lg-2 control-label">Data</label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="inputData" placeholder="dd/mm/aaaa" name="data" type="text" {{ $disabled }}>
+                            <input class="form-control" id="inputData" placeholder="dd/mm/aaaa" name="data"
+                                   type="text" {{ $disabled }}>
                         </div>
                     </div>
                     <div class="form-group">
@@ -65,21 +66,12 @@
     </div>
     <div class="col-lg-6">
         <div class="well bs-component">
-            <legend>Últimas Doações</legend>
-            <table class="table table-striped table-hover ">
-                <thead>
-                <tr>
-                    <th>Local</th>
-                    <th>Data/Hora</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                </tbody>
-            </table>
+            <legend>Condições pré-doação</legend>
+            @foreach($avisos as $aviso)
+                <p>
+                    <small>{{$aviso->nome}}</small>
+                </p>
+            @endforeach
         </div>
     </div>
 @endsection
