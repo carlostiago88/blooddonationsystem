@@ -13,7 +13,7 @@
                             <label for="inputNascimento" class="col-lg-2 control-label">Nascimento</label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="inputNascimento" placeholder="dd/mm/aaaa"
-                                       name="nascimento" type="text" required>
+                                       name="nascimento" type="text" required value="{{ $doador->nascimento }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -21,14 +21,16 @@
                             <div class="col-lg-10">
                                 <div class="radio">
                                     <label>
-                                        <input name="sexo" id="optionsRadios1" value="M" checked=""
+                                        <input name="sexo" id="optionsRadios1" value="M"
+                                               @if($doador->sexo =='M') checked @endif
                                                type="radio">
                                         Masculino
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input name="sexo" id="optionsRadios2" value="F" type="radio">
+                                        <input name="sexo" id="optionsRadios2" value="F" type="radio"
+                                               @if($doador->sexo =='F') checked @endif>
                                         Feminino
                                     </label>
                                 </div>
@@ -38,13 +40,15 @@
                             <label for="inputTelefone" class="col-lg-2 control-label">Contato</label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="inputTelefone" placeholder="Telefone" name="contato"
+                                       value="{{ $doador->contato }}"
                                        type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="textEndereco" class="col-lg-2 control-label">Endereço</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="textEndereco" name="endereco" required></textarea>
+                                <textarea class="form-control" rows="3" id="textEndereco" name="endereco"
+                                          required> {{ $doador->endereco }}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -52,7 +56,8 @@
                             <div class="col-lg-10">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="ja_e_doador" value="S"> Sim
+                                        <input type="checkbox" name="ja_e_doador" value="S"
+                                               @if($doador->ja_e_doador =='S') checked @endif> Sim
                                     </label>
                                 </div>
                             </div>
@@ -63,8 +68,15 @@
                                 @foreach($impedimentos as $impedimento)
                                     <div class="checkbox">
                                         <label for="imp-{{ $impedimento->id }}">
-                                            <input name="tipo_impedimento[{{ $impedimento->id }}]" id="imp-{{ $impedimento->id }}" value="{{ $impedimento->tipo_impedimento }}"
-                                                   type="checkbox">
+                                            <input name="tipo_impedimento[{{ $impedimento->id }}]"
+                                                   id="imp-{{ $impedimento->id }}"
+                                                   value="{{ $impedimento->tipo_impedimento }}"
+                                                   type="checkbox"
+                                                   @foreach($doadorImpedimento as $imps)
+                                                   @if($impedimento->id == $imps['impedimento_id']))
+                                                   checked
+                                                    @endif
+                                                    @endforeach>
                                             {{ $impedimento->nome }}
                                         </label>
                                     </div>

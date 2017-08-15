@@ -43,11 +43,16 @@ class DoadorController extends Controller
     public function create(Request $request)
     {
         $id = $request->user()->id;
+
+        $doador = \App\Doador::where(['user_id' => $id, 'status' => 1])->first();
+        $doadorImpedimento = \App\DoadorImpedimento::where(['user_id' => $id, 'status' => 1])->get();
+
         $impedimentos = DB::table('impedimentos')->where('tipo_impedimento', 'definitivo')->orderBy('nome', 'asc')->get();
-        //dd($id);
         return view('doador.create')->with([
             'user_id' => $id,
-            'impedimentos' => $impedimentos
+            'impedimentos' => $impedimentos,
+            'doador' => $doador,
+            'doadorImpedimento' => $doadorImpedimento
         ]);
     }
 
