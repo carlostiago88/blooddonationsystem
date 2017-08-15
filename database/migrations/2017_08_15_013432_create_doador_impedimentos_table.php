@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImpedimentosTable extends Migration
+class CreateDoadorImpedimentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateImpedimentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('impedimentos', function (Blueprint $table) {
+        Schema::create('doador_impedimento', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome',256);
-            $table->string('tipo_impedimento')->default('temporario');//definitivo
+            $table->integer('user_id');
+            $table->integer('impedimento_id');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateImpedimentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('impedimentos');
+        Schema::drop('doador_impedimento');
     }
 }

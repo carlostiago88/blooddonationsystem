@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Doador;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use App\DoadorImpedimento;
 
 class DoadorController extends Controller
 {
@@ -40,9 +43,11 @@ class DoadorController extends Controller
     public function create(Request $request)
     {
         $id = $request->user()->id;
+        $impedimentos = DB::table('impedimentos')->where('tipo_impedimento', 'definitivo')->orderBy('nome', 'asc')->get();
         //dd($id);
         return view('doador.create')->with([
             'user_id' => $id,
+            'impedimentos' => $impedimentos
         ]);
     }
 
@@ -55,24 +60,58 @@ class DoadorController extends Controller
     public function store(Request $request, \App\Doador $doador)
     {
         $this->model = $doador;
-        //$result = $this->model->updateOrCreate($request->all()->except('_token'));
+
+        $id = $request->user()->id;
+
+        $tipos_impedimentos = $request->input('tipo_impedimento');
+
+        $this->model->where([
+            'user_id' => $id,
+        ])->update(['status' => 0]);
+
         $result = $this->model->create($request->all());
 
-        //create($request->all());
-        return redirect()->route('doador.agendar')
-            ->with('success', 'Seu cadastro foi atualizado com sucesso! Aproveite e agende sua doação.');
+        if ($tipos_impedimentos == null) {
+            return redirect()->route('doador.agendar')
+                ->with('success', 'Seu cadastro foi atualizado com sucesso! Você não tem impedimentos definitivos. Aproveite e agende sua doação.');
+
+        } else {
+            $this->model->where([
+                'user_id' => $id,
+                'status' => 1
+            ])
+                ->update(['aptidao' => 0]);
+
+            DB::table('doador_impedimento')
+                ->where('user_id', $id)
+                ->update(['status' => 0]);
+
+            foreach ($tipos_impedimentos as $key => $value) {
+                DB::table('doador_impedimento')->insert([
+                    'user_id' => $id,
+                    'impedimento_id' => $key,
+                    "created_at" => \Carbon\Carbon::now(),
+                    "updated_at" => \Carbon\Carbon::now(),
+                ]);
+            }
+            return redirect()->route('campanhas')
+                ->with('error', 'Infelizmente você possui impedimento definitivo para doar. Ajude-nos divulgando as nossas campanhas nas redes sociais.');
+        }
     }
 
-    public function avaliar(){
+    public function avaliar()
+    {
         return view('doador.avaliar');
     }
+
     /**
      * Display the specified resource.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         //
     }
@@ -83,7 +122,8 @@ class DoadorController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         //
     }
@@ -95,7 +135,8 @@ class DoadorController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //
     }
@@ -106,7 +147,8 @@ class DoadorController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }

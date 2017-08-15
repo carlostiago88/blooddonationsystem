@@ -10,4 +10,5 @@ class Doador extends Model
         'user_id', 'endereco', 'nascimento', 'ja_e_doador','sexo','contato','status',
     ];
     protected $table = 'doadores';
+    public $timestamps = true;
 }

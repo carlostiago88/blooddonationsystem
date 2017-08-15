@@ -12,7 +12,8 @@
                         <div class="form-group">
                             <label for="inputNascimento" class="col-lg-2 control-label">Nascimento</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="inputNascimento" placeholder="dd/mm/aaaa" name="nascimento" type="text">
+                                <input class="form-control" id="inputNascimento" placeholder="dd/mm/aaaa"
+                                       name="nascimento" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -36,13 +37,14 @@
                         <div class="form-group">
                             <label for="inputTelefone" class="col-lg-2 control-label">Contato</label>
                             <div class="col-lg-10">
-                                <input class="form-control" id="inputTelefone" placeholder="Telefone" name="contato" type="text">
+                                <input class="form-control" id="inputTelefone" placeholder="Telefone" name="contato"
+                                       type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="textEndereco" class="col-lg-2 control-label">Endereço</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" rows="3" id="textEndereco" name="endereco"></textarea>
+                                <textarea class="form-control" rows="3" id="textEndereco" name="endereco" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -53,6 +55,20 @@
                                         <input type="checkbox" name="ja_e_doador" value="S"> Sim
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label" for="checkboxes">Condições que impedem doação</label>
+                            <div class="col-lg-12">
+                                @foreach($impedimentos as $impedimento)
+                                    <div class="checkbox">
+                                        <label for="imp-{{ $impedimento->id }}">
+                                            <input name="tipo_impedimento[{{ $impedimento->id }}]" id="imp-{{ $impedimento->id }}" value="{{ $impedimento->tipo_impedimento }}"
+                                                   type="checkbox">
+                                            {{ $impedimento->nome }}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group">

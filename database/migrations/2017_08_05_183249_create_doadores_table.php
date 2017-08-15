@@ -18,10 +18,11 @@ class CreateDoadoresTable extends Migration
             $table->integer('user_id');
             $table->string('endereco',240);
             $table->string('nascimento');
-            $table->string('ja_e_doador');
+            $table->string('ja_e_doador')->default('N');
             $table->string('sexo');
             $table->string('contato',240);
             $table->boolean('status')->default(1);
+            $table->boolean('aptidao')->default(1); //apto = 1 , inapto = 0
             $table->timestamps();
         });
     }
