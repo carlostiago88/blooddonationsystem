@@ -20,6 +20,7 @@ class CreateDoadoresTable extends Migration
             $table->string('nascimento');
             $table->string('ja_e_doador')->default('N');
             $table->string('sexo');
+            $table->string('documento')->default('-');
             $table->string('contato',240);
             $table->boolean('status')->default(1);
             $table->boolean('aptidao')->default(1); //apto = 1 , inapto = 0

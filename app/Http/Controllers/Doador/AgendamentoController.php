@@ -61,7 +61,6 @@ class AgendamentoController extends Controller
     {
         $this->model = $model;
         $user_id = Auth::user()->id;
-        //dd($request->all());
         $result = $this->model->create($request->all());
 
         return redirect()->route('doador.agendar')

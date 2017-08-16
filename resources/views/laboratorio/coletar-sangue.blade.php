@@ -3,52 +3,53 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>Doações agendadas para hoje</h2>
-            <table class="table table-striped table-hover ">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nome do Doador</th>
-                    <th>Turno</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>12</td>
-                    <td>João Silva</td>
-                    <td>Manhã</td>
-                    <td><span class="label label-warning">Agendado</span></td>
-                    <td><a href="#" role="button" class="btn btn-primary btn-xs btn-info">
-                            Coletado
-                        </a>
-                        <a href="#" role="button" class="btn btn-primary btn-xs btn-danger">
-                            Não Coletado
-                        </a>
-                        <a href="#" role="button" class="btn btn-primary btn-xs btn-default disabled">
-                            Emitir ID
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>23</td>
-                    <td>Marimar Luz</td>
-                    <td>Manhã</td>
-                    <td><span class="label label-success">Coletado</span></td>
-                    <td><a href="#" role="button" class="btn btn-primary btn-xs btn-default disabled ">
-                            Coletado
-                        </a>
-                        <a href="#" role="button" class="btn btn-primary btn-xs btn-default disabled">
-                            Não Coletado
-                        </a>
-                        <a href="#" role="button" class="btn btn-primary btn-xs btn-success">
-                            Emitir ID
-                        </a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            @foreach($doador_info as $info)
+                <h2>Info da Agenda {{ $info->nome_doador }}</h2>
+                <div class="well well-sm col-lg-12">
+                    <div class="col-lg-5">
+                        <p>Cod. Agendamento: {{ $info->id }}</p>
+                        <p>Data Doação: {{ $info->data_doacao }}</p>
+                        <p>Turno: {{ $info->turno }}</p>
+                        <p>Dia da Marcação: {{ $info->dia_marcarcao }}</p>
+                    </div>
+                    <div class="col-lg-5">
+                        <p>Cod. Doador: {{ $info->doador_id }}</p>
+                        <p>Nome Doador: {{ $info->nome_doador }}</p>
+                        <p>Sexo: {{ $info->sexo }}</p>
+                        <p>Documento: {{ $info->documento }}</p>
+                        <p>Nascimento: {{ $info->nascimento }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well bs-component">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <!-- Form Name -->
+                            <legend>Condições Impeditivas</legend>
+                            <!-- Multiple Radios (inline) -->
+                            @foreach($impedimentos as $impedimento)
+                                <div class="form-group">
+                                    <label class="col-md-8 control-label" for="radios">{{ $impedimento->nome }}</label>
+                                    <div class="col-md-4">
+                                        <label class="radio-inline" for="radios-0">
+                                            <input name="radios" id="radios-0" value="1" checked="checked" type="radio">
+                                            Sim
+                                        </label>
+                                        <label class="radio-inline" for="radios-1">
+                                            <input name="radios" id="radios-1" value="2" type="radio">
+                                            Não
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

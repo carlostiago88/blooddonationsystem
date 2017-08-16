@@ -22,22 +22,22 @@ class UsersTableSeeder extends Seeder
         factory(\App\User::class)->create([
             'email' => 'lab.tecnico@email.com',
             'perfil' => 'lab.tecnico',
-            'laboratorio_id' => '1',
+            'laboratorio_id' => '2',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.biomedico@email.com',
             'perfil' => 'lab.biomedico',
-            'laboratorio_id' => '1',
+            'laboratorio_id' => '2',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.logistico@email.com',
             'perfil' => 'lab.logistico',
-            'laboratorio_id' => '1',
+            'laboratorio_id' => '2',
         ]);
         factory(\App\User::class)->create([
             'email' => 'lab.gerente@email.com',
             'perfil' => 'lab.gerente',
-            'laboratorio_id' => '1',
+            'laboratorio_id' => '2',
         ]);
         factory(\App\User::class)->create([
             'email' => 'hemocentro@email.com',

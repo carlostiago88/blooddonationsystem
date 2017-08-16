@@ -55,7 +55,7 @@
                                     <li><a href="{{route('admin.monitoring')}}">Monitoramento</a></li>
                                     <li><a href="{{route('admin.reports')}}">Relatórios</a></li>
                                 @elseif(Auth::user()->perfil == 'lab.tecnico')
-                                    <li><a href="{{route('laboratorio.coletar-sangue')}}">Coletar Sangue</a></li>
+                                    <li><a href="{{route('laboratorio.listar-agendados')}}">Listar Agendados</a></li>
                                 @elseif(Auth::user()->perfil == 'lab.logistico')
                                     <li><a href="{{route('laboratorio.estoque-sangue')}}">Estoque de Bolsas</a></li>
                                     <li><a href="{{route('laboratorio.despacho-sangue')}}">Despacho de Bolsas</a></li>

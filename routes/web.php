@@ -151,6 +151,10 @@ Route::middleware(['auth'])->group(function () {
             'as' => 'laboratorio.coletar-sangue',
             'uses' => 'Laboratorio\LaboratorioController@coletarSangue'
         ]);
+        Route::get('/laboratorio/listar-agendados', [
+            'as' => 'laboratorio.listar-agendados',
+            'uses' => 'Laboratorio\LaboratorioController@listarAgendados'
+        ]);
     });
     Route::middleware(['check-permission:lab.biomedico'])->group(function () {
         Route::get('/laboratorio/analise-sangue', [

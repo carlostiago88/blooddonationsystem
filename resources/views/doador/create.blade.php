@@ -10,10 +10,19 @@
                     <fieldset>
                         <legend>Completar Cadastro</legend>
                         <div class="form-group">
+                            <label for="inputDocumento" class="col-lg-2 control-label">Documento</label>
+                            <div class="col-lg-10">
+                                <input class="form-control" id="inputDocumento" placeholder="CPF"
+                                       name="documento" type="text" required
+                                       value="@if(isset($doador->documento)) {{$doador->documento}} @endif">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="inputNascimento" class="col-lg-2 control-label">Nascimento</label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="inputNascimento" placeholder="dd/mm/aaaa"
-                                       name="nascimento" type="text" required value="{{ $doador->nascimento }}">
+                                       name="nascimento" type="text" required
+                                       value="@if(isset($doador->nascimento)) {{$doador->nascimento}} @endif">
                             </div>
                         </div>
                         <div class="form-group">
@@ -21,16 +30,19 @@
                             <div class="col-lg-10">
                                 <div class="radio">
                                     <label>
-                                        <input name="sexo" id="optionsRadios1" value="M"
-                                               @if($doador->sexo =='M') checked @endif
-                                               type="radio">
+                                        <input name="sexo" id="optionsRadios1" value="M" type="radio"
+                                               @if(isset($doador->sexo) && ($doador->sexo =='M'))
+                                               checked
+                                                @endif>
                                         Masculino
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
                                         <input name="sexo" id="optionsRadios2" value="F" type="radio"
-                                               @if($doador->sexo =='F') checked @endif>
+                                               @if(isset($doador->sexo) && ($doador->sexo =='F'))
+                                               checked
+                                                @endif>
                                         Feminino
                                     </label>
                                 </div>
@@ -40,7 +52,7 @@
                             <label for="inputTelefone" class="col-lg-2 control-label">Contato</label>
                             <div class="col-lg-10">
                                 <input class="form-control" id="inputTelefone" placeholder="Telefone" name="contato"
-                                       value="{{ $doador->contato }}"
+                                       value="@if(isset($doador->contato)) {{$doador->contato}} @endif"
                                        type="text" required>
                             </div>
                         </div>
@@ -48,7 +60,7 @@
                             <label for="textEndereco" class="col-lg-2 control-label">Endereço</label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" rows="3" id="textEndereco" name="endereco"
-                                          required> {{ $doador->endereco }}</textarea>
+                                          required> @if(isset($doador->endereco)) {{$doador->endereco}} @endif</textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -57,7 +69,8 @@
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="ja_e_doador" value="S"
-                                               @if($doador->ja_e_doador =='S') checked @endif> Sim
+                                               @if(isset($doador->ja_e_doador) && $doador->ja_e_doador =='S'))
+                                               checked @endif> Sim
                                     </label>
                                 </div>
                             </div>
@@ -72,11 +85,13 @@
                                                    id="imp-{{ $impedimento->id }}"
                                                    value="{{ $impedimento->tipo_impedimento }}"
                                                    type="checkbox"
+                                                   @if(isset($doadorImpedimento))
                                                    @foreach($doadorImpedimento as $imps)
                                                    @if($impedimento->id == $imps['impedimento_id']))
                                                    checked
                                                     @endif
-                                                    @endforeach>
+                                                    @endforeach
+                                                    @endif>
                                             {{ $impedimento->nome }}
                                         </label>
                                     </div>
