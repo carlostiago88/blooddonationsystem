@@ -108,7 +108,7 @@ return [
     'key' => env('APP_KEY'),
 
 	//DEV
-	'cipher' => 'AES-256-CBC',
+	//'cipher' => 'AES-256-CBC',
 	//PRD
     'cipher' => 'AES-128-CBC',
 
