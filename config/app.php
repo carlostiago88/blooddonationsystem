@@ -38,8 +38,10 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
-
+	//DEV
+    //'debug' => env('APP_DEBUG', true),
+    //PROD
+	'debug' => env('APP_DEBUG', false),
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -51,7 +53,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://www.boxxi.com.br'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +66,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America\Belem',
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +107,10 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'cipher' => 'AES-256-CBC',
+	//DEV
+	'cipher' => 'AES-256-CBC',
+	//PRD
+    'cipher' => 'AES-128-CBC',
 
     /*
     |--------------------------------------------------------------------------
