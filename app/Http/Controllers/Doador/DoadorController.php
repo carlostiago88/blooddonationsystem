@@ -76,7 +76,6 @@ class DoadorController extends Controller
         ])->update(['status' => 0]);
 
         $result = $this->model->create($request->all());
-
         if ($tipos_impedimentos == null) {
             return redirect()->route('doador.agendar')
                 ->with('success', 'Seu cadastro foi atualizado com sucesso! Você não tem impedimentos definitivos. Aproveite e agende sua doação.');

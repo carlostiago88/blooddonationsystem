@@ -18,9 +18,9 @@ class CreateBolsasTable extends Migration
             $table->integer('doador_id');
             $table->integer('tecnico_id');
             $table->integer('laboratorio_id');
-            $table->integer('tipo');
-            $table->integer('fator_rh');
             $table->integer('bolsa_origem_id');
+            $table->integer('agendamento_id');
+            $table->string('bolsa_chave');
             $table->string('status');
             $table->timestamps();
         });

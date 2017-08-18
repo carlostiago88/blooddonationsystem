@@ -28,10 +28,11 @@ class SangueManager extends Model
               INNER JOIN doadores c on c.user_id = a.user_id
               WHERE a.situacao = 'agendado'
               AND b.status = 1
+              AND c.status = 1
               AND a.laboratorio_id = $laboratorio_id");
     }
 
-    public function agendaLaboratorioCompleto($laboratorio_id,$doador_id)
+    public function agendaLaboratorioCompleto($laboratorio_id, $doador_id)
     {
         return DB::select(
             "SELECT
@@ -51,6 +52,7 @@ class SangueManager extends Model
               INNER JOIN doadores c on c.user_id = a.user_id
               WHERE a.situacao = 'agendado'
               AND b.status = 1
+              AND c.status = 1
               AND a.laboratorio_id = $laboratorio_id
               AND c.user_id = $doador_id");
     }
@@ -67,5 +69,43 @@ class SangueManager extends Model
             INNER JOIN users u on d.user_id = u.id
             WHERE
             d.user_id = $doador_id and d.status = 1");
+    }
+
+    public function detalharBolsa($bolsa_id)
+    {
+        return DB::select(
+            "SELECT
+
+            b.bolsa_chave,
+
+            u.name as nome_doador,
+
+            d.user_id as doador_id,
+            d.nascimento,
+            d.fator_rh,
+            d.tipo_sanguineo,
+            d.sexo,
+            d.documento,
+            d.contato,
+
+            l.id as lab_id,
+            l.nome as nome_lab,
+
+            tec.name as nome_tecnico,
+            tec.id as tecnico_id
+
+
+            FROM bolsas b
+            INNER JOIN doadores d on d.user_id = b.doador_id
+            INNER JOIN laboratorios l on l.id = b.laboratorio_id
+            LEFT JOIN users tec on tec.id = b.tecnico_id
+            LEFT JOIN users u on d.user_id = u.id
+            WHERE
+            b.bolsa_chave = '$bolsa_id' and b.status = 1");
+    }
+
+    public function atualizarBolsa($bolsa_chave)
+    {
+
     }
 }

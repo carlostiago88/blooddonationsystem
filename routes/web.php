@@ -147,14 +147,27 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['check-permission:lab.tecnico'])->group(function () {
-        Route::get('/laboratorio/coletar-sangue', [
-            'as' => 'laboratorio.coletar-sangue',
-            'uses' => 'Laboratorio\LaboratorioController@coletarSangue'
-        ]);
         Route::get('/laboratorio/listar-agendados', [
             'as' => 'laboratorio.listar-agendados',
             'uses' => 'Laboratorio\LaboratorioController@listarAgendados'
         ]);
+        Route::get('/laboratorio/coletar-sangue', [
+            'as' => 'laboratorio.coletar-sangue',
+            'uses' => 'Laboratorio\LaboratorioController@coletarSangue'
+        ]);
+        Route::post('/laboratorio/receber-formulario', [
+            'as' => 'laboratorio.receber-formulario',
+            'uses' => 'Laboratorio\LaboratorioController@receberFormulario'
+        ]);
+        Route::get('/laboratorio/gerar-idbolsa', [
+            'as' => 'laboratorio.gerar-idbolsa',
+            'uses' => 'Laboratorio\LaboratorioController@gerarIdbolsa'
+        ]);
+        Route::get('/laboratorio/finalizar-coleta', [
+            'as' => 'laboratorio.finalizar-coleta',
+            'uses' => 'Laboratorio\LaboratorioController@finalizarColeta'
+        ]);
+
     });
     Route::middleware(['check-permission:lab.biomedico'])->group(function () {
         Route::get('/laboratorio/analise-sangue', [

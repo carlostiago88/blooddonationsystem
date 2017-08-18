@@ -76,6 +76,70 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-lg-2 control-label">Tipo Sanguíneo</label>
+                            <div class="col-lg-10">
+                                <div class="radio">
+                                    <label>
+                                        <input name="tipo_sanguineo" id="optionsRadios1" value="A" type="radio"
+                                               @if(isset($doador->tipo_sanguineo) && ($doador->tipo_sanguineo =='A'))
+                                               checked
+                                                @endif>
+                                        A
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="tipo_sanguineo" id="optionsRadios2" value="B" type="radio"
+                                               @if(isset($doador->tipo_sanguineo) && ($doador->tipo_sanguineo =='B'))
+                                               checked
+                                                @endif>
+                                        B
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="tipo_sanguineo" id="optionsRadios2" value="AB" type="radio"
+                                               @if(isset($doador->tipo_sanguineo) && ($doador->tipo_sanguineo =='AB'))
+                                               checked
+                                                @endif>
+                                        AB
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="tipo_sanguineo" id="optionsRadios2" value="O" type="radio"
+                                               @if(isset($doador->tipo_sanguineo) && ($doador->tipo_sanguineo =='O'))
+                                               checked
+                                                @endif>
+                                        O
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Fator RH</label>
+                            <div class="col-lg-10">
+                                <div class="radio">
+                                    <label>
+                                        <input name="fator_rh" id="optionsRadios1" value="P" type="radio"
+                                               @if(isset($doador->fator_rh) && ($doador->fator_rh =='P'))
+                                               checked
+                                                @endif>
+                                        Positivo
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input name="fator_rh" id="optionsRadios2" value="N" type="radio"
+                                               @if(isset($doador->fator_rh) && ($doador->fator_rh =='N'))
+                                               checked
+                                                @endif>
+                                        Negativo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-lg-6 control-label" for="checkboxes">Condições que impedem doação</label>
                             <div class="col-lg-12">
                                 @foreach($impedimentos as $impedimento)

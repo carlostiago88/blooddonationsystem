@@ -57,10 +57,13 @@ class AgendamentoController extends Controller
         ]);
     }
 
-    public function store(Request $request,\App\Agendamento $model)
+    public function store(Request $request, \App\Agendamento $model)
     {
         $this->model = $model;
         $user_id = Auth::user()->id;
+        DB::table('agendamentos')
+            ->where('user_id', $user_id)
+            ->update(['status' => 0]);
         $result = $this->model->create($request->all());
 
         return redirect()->route('doador.agendar')

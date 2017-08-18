@@ -19,7 +19,8 @@ class CreateAgendamentosTable extends Migration
             $table->integer('laboratorio_id');
             $table->string('data');
             $table->string('turno');
-            $table->string('situacao')->default('agendado');//cancelado ou realizado
+            $table->integer('status')->default(1);
+            $table->string('situacao')->default('agendado');//em andamento, cancelado ou realizado
             $table->timestamps();
         });
     }

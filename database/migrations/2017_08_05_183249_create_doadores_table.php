@@ -19,6 +19,8 @@ class CreateDoadoresTable extends Migration
             $table->string('endereco',240);
             $table->string('nascimento');
             $table->string('ja_e_doador')->default('N');
+            $table->string('fator_rh');
+            $table->string('tipo_sanguineo');
             $table->string('sexo');
             $table->string('documento')->default('-');
             $table->string('contato',240);
