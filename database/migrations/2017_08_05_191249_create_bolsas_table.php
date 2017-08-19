@@ -21,6 +21,8 @@ class CreateBolsasTable extends Migration
             $table->integer('bolsa_origem_id');
             $table->integer('agendamento_id');
             $table->string('bolsa_chave');
+            $table->string('analise_biomedico')->default('aguardando analise');
+            $table->integer('biomedico_id')->default(0);
             $table->string('status');
             $table->timestamps();
         });

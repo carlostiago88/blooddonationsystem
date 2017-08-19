@@ -108,4 +108,22 @@ class SangueManager extends Model
     {
 
     }
+
+    public function listarBolsasLab($lab_id)
+    {
+        return DB::select("SELECT
+B.bolsa_chave,
+B.created_at data_coleta,
+D.fator_rh,
+D.tipo_sanguineo,
+D.sexo,
+D.documento,
+B.analise_biomedico
+
+FROM AGENDAMENTOS A
+
+INNER JOIN BOLSAS B ON A.ID = B.AGENDAMENTO_ID
+INNER JOIN DOADORES D ON B.DOADOR_ID = D.USER_ID
+WHERE B.STATUS = 1 AND B.LABORATORIO_ID = $lab_id");
+    }
 }

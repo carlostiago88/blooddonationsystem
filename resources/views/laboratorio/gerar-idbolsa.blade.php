@@ -15,7 +15,7 @@
                         </div>
                         <div class="panel-body">
                             <p>id_doador: {{ $info->doador_id }}</p>
-                            <p>bolsa_chave: {{ $info->bolsa_chave}}</p>
+                            <p>bolsa_chave: <b>{{ $info->bolsa_chave}}</b></p>
                             <p>nascimento: {{ $info->nascimento}}</p>
                             <p>fator_rh: {{ $info->fator_rh}}</p>
                             <p>tipo_sanguineo: {{ $info->tipo_sanguineo}}</p>

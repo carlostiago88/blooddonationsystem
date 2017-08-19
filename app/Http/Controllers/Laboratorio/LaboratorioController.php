@@ -8,7 +8,7 @@ use \App\Laboratorio;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\SangueManager;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 class LaboratorioController extends Controller
 {
@@ -118,7 +118,7 @@ class LaboratorioController extends Controller
             ]);
 
             return redirect()->route('laboratorio.gerar-idbolsa')->with([
-                'success' => 'Você já pode coletar. Atente-se para o ID da bolsa que foi gerado.',
+                'success' => 'Você já pode coletar. Atente-se para a chave da bolsa que foi gerado.',
                 'bolsa_chave' => $bolsa_chave,
             ]);
         } else {
@@ -132,7 +132,7 @@ class LaboratorioController extends Controller
                     'status' => 1
                 ])
                 ->update(['situacao' => 'doacao não realizada']);
-            return view('laboratorio.receber-formulario', [
+            return view('laboratorio.doador-inapto', [
                 'disabled' => $disabled,
             ]);
         }
@@ -157,10 +157,17 @@ class LaboratorioController extends Controller
     {
 
         $sangueManager = new SangueManager();
-        $sangueManager->detalharBolsa($request->input('bolsa_chave'));
+        $infos = $sangueManager->detalharBolsa($request->input('asd'));
+        $doador_id = null;
+        $lab_id = null;
+
+        foreach ($infos as $info) {
+            $doador_id = $info->doador_id;
+            $lab_id = $info->lab_id;
+        }
         DB::table('agendamentos')->where([
-            'user_id' => $sangueManager['doador_id'],
-            'laboratorio_id' => $sangueManager['lab_id'],
+            'user_id' => $doador_id,
+            'laboratorio_id' => $lab_id,
             'status' => 1
         ])->update(['situacao' => 'doacao realizada']);
 
@@ -174,9 +181,57 @@ class LaboratorioController extends Controller
         return view('laboratorio.estoque-sangue');
     }
 
-    public function analiseSangue()
+    public function analiseSangue(Request $request)
     {
-        return view('laboratorio.analise-sangue');
+        $sangueManager = new SangueManager();
+        $infos = $sangueManager->listarBolsasLab(Auth::user()->laboratorio_id);
+        return view('laboratorio.analise-sangue', [
+            'listaBolsasLab' => $infos
+        ]);
+    }
+
+    public function inserirExames(Request $request)
+    {
+        if ($request->isMethod('get')) {
+            $exames = DB::table('exames')->where('status', '1')->orderBy('nome', 'asc')->get();
+            return view('laboratorio.inserir-exames', [
+                'exames' => $exames,
+                'bolsa_chave' => $request->input('bolsa_chave')
+            ]);
+        }
+        if ($request->isMethod('post')) {
+
+            $bolsa_chave = $request->input('bolsa_chave');
+            for ($i = 1; $i <= $request->input('maxCount'); $i++) {
+                if (array_key_exists("textinput-" . $i, $request->all())) {
+                    DB::table('bolsa_exames')->insert([
+                        [
+                            'user_id' => $request->input('user_id'),
+                            'exame_id' => $i,
+                            'resultado' => $request->input('textinput-' . $i),
+                            'bolsa_chave' => $bolsa_chave,
+                            'created_at' => \Carbon\Carbon::now(),
+                            'updated_at' => \Carbon\Carbon::now()
+                        ],
+                    ]);
+                }
+            }
+
+            DB::table('bolsas')->where([
+                'bolsa_chave' => $bolsa_chave,
+            ])->update([
+                'biomedico_id' => $request->input('user_id'),
+                'analise_biomedico' => $request->input('analise_biomedico'),]);
+
+            Session::flash('alert-class', 'alert alert-dismissible alert-info');
+            Session::flash('message', 'Bolsa ' . $bolsa_chave . 'atualizada com sucesso.');
+
+            $sangueManager = new SangueManager();
+            $infos = $sangueManager->listarBolsasLab(Auth::user()->laboratorio_id);
+            return view('laboratorio.analise-sangue', [
+                'listaBolsasLab' => $infos
+            ]);
+        }
     }
 
     public function agenda()

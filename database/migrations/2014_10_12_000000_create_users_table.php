@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->string('perfil');
+            $table->string('perfil')->default('doador');
             $table->integer('laboratorio_id')->nullable();
             $table->integer('hospital_id')->nullable();
             $table->integer('hemocentro_id')->nullable();

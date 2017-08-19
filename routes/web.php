@@ -174,6 +174,14 @@ Route::middleware(['auth'])->group(function () {
             'as' => 'laboratorio.analise-sangue',
             'uses' => 'Laboratorio\LaboratorioController@analiseSangue'
         ]);
+        Route::get('/laboratorio/inserir-exames', [
+            'as' => 'laboratorio.inserir-exames',
+            'uses' => 'Laboratorio\LaboratorioController@inserirExames'
+        ]);
+        Route::post('/laboratorio/inserir-exames', [
+            'as' => 'laboratorio.inserir-exames',
+            'uses' => 'Laboratorio\LaboratorioController@inserirExames'
+        ]);
     });
     Route::middleware(['check-permission:lab.logistico'])->group(function () {
         Route::get('/laboratorio/estoque-sangue', [
