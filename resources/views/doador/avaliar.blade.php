@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h2>Avalie o Atendimento</h2>
-            <table class="table table-striped table-hover ">
+            <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <th>Data</th>
                 <th>Laboratório</th>

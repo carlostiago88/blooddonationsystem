@@ -5,7 +5,7 @@
         <div class="row">
             <h2>Próximas Doações</h2>
             <h4></h4>
-            <table class="table table-striped table-hover ">
+            <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <tr>
                     <th>Documento</th>

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h2>Estoque de Sangue</h2>
-            <table class="table table-striped table-hover ">
+            <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <tr>
                     <th>ID Bolsa</th>

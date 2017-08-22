@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <h2>Comunicação</h2>
-            <table class="table table-striped table-hover ">
+            <table class="table table-striped table-hover table-responsive">
                 <thead>
                 <tr>
                     <th>#</th>
