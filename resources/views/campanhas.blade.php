@@ -18,7 +18,7 @@
         @endif
         <div class="row">
             <h2>Campanhas</h2>
-            <table class="table table-striped table-hover table-responsive">
+            <table class="table table-responsive">
                 <thead>
                 <tr>
                     <th>#</th>
